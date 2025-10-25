@@ -1,0 +1,9 @@
+digraph TravelingSalesman {
+    rankdir=LR;
+    node [shape=circle];
+    A -> B [label="10", color=red, penwidth=2.0];
+    B -> E [label="8", color=red, penwidth=2.0];
+    E -> C [label="20", color=red, penwidth=2.0];
+    C -> D [label="12", color=red, penwidth=2.0];
+    D -> A [label="30", color=red, penwidth=2.0];
+}

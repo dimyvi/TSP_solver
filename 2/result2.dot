@@ -1,0 +1,15 @@
+digraph TSP_Solution {
+    rankdir=LR;
+    node [shape=circle, style=filled, fillcolor=white];
+    edge [fontsize=10];
+    0 [label="A"];
+    1 [label="B"];
+    2 [label="C"];
+    3 [label="D"];
+    4 [label="E"];
+    0 -> 1 [label="10", color=red, penwidth=2];
+    1 -> 4 [label="8", color=red, penwidth=2];
+    4 -> 3 [label="25", color=red, penwidth=2];
+    3 -> 2 [label="12", color=red, penwidth=2];
+    2 -> 0 [label="24", color=red, penwidth=2];
+}

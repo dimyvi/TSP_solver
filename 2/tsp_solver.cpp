@@ -15,12 +15,10 @@ TSPSolver::TSPSolver(const std::vector<std::vector<int>>& dist_matrix)
 int TSPSolver::computeBound(const std::vector<int>& path, const std::vector<bool>& visited) const {
     int bound = 0;
     
-    // Вычисляем стоимость уже пройденного пути
     for (size_t i = 0; i < path.size() - 1; i++) {
         bound += matrix[path[i]][path[i + 1]];
     }
-    
-    // Добавляем минимальное ребро из последнего города в непосещенный город
+
     if (!path.empty()) {
         int current_city = path.back();
         int min_edge = INT_MAX;
@@ -33,8 +31,7 @@ int TSPSolver::computeBound(const std::vector<int>& path, const std::vector<bool
             bound += min_edge;
         }
     }
-    
-    // Добавляем минимальные ребра для оставшихся непосещенных городов
+
     for (int i = 0; i < n; i++) {
         if (!visited[i]) {
             int min_out = INT_MAX;
@@ -66,30 +63,25 @@ int TSPSolver::computePathCost(const std::vector<int>& path) const {
 std::pair<std::vector<int>, int> TSPSolver::solve() {
     std::vector<int> best_path;
     int best_cost = INT_MAX;
-    
-    // Приоритетная очередь активных узлов
+
     auto cmp = [](const Node& a, const Node& b) { return a.bound > b.bound; };
     std::priority_queue<Node, std::vector<Node>, decltype(cmp)> active_nodes(cmp);
-    
-    // Инициализация корневого узла
+
     std::vector<int> start_path = {0};
     std::vector<bool> visited(n, false);
     visited[0] = true;
     int start_bound = computeBound(start_path, visited);
     
     active_nodes.push(Node(0, start_path, visited, start_bound));
-    
-    // Основной цикл алгоритма
+
     while (!active_nodes.empty()) {
         Node current_node = active_nodes.top();
         active_nodes.pop();
-        
-        // Отсечение: если граница хуже лучшего решения
+
         if (current_node.bound >= best_cost) {
             continue;
         }
-        
-        // Проверка завершения маршрута
+
         if (current_node.level == n - 1) {
             std::vector<int> complete_path = current_node.path;
             complete_path.push_back(complete_path[0]);
@@ -101,8 +93,7 @@ std::pair<std::vector<int>, int> TSPSolver::solve() {
             }
             continue;
         }
-        
-        // Ветвление: создаем дочерние узлы для всех непосещенных городов
+
         for (int i = 0; i < n; i++) {
             if (!current_node.visited[i]) {
                 std::vector<int> new_path = current_node.path;
@@ -113,8 +104,7 @@ std::pair<std::vector<int>, int> TSPSolver::solve() {
                 
                 int new_level = current_node.level + 1;
                 int new_bound = computeBound(new_path, new_visited);
-                
-                // Добавляем узел только если его граница перспективна
+
                 if (new_bound < best_cost) {
                     active_nodes.push(Node(new_level, new_path, new_visited, new_bound));
                 }

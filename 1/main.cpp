@@ -3,15 +3,15 @@
 #include <iostream>
 
 /**
- * @brief Main function for TSP solver
- * @param argc Argument count
- * @param argv Argument values
- * @return Program exit status
+ * @brief Главная функция для решения задачи коммивояжера
+ * @param argc Количество аргументов
+ * @param argv Значения аргументов
+ * @return Статус выхода из программы
  */
 int main(int argc, char* argv[]) {
     if (argc != 3) {
-        std::cerr << "Usage: " << argv[0] << " <input_file> <output_file>" << std::endl;
-        std::cerr << "Example: " << argv[0] << " input.txt output.dot" << std::endl;
+        std::cerr << "Использование: " << argv[0] << " <входной_файл> <выходной_файл>" << std::endl;
+        std::cerr << "Пример: " << argv[0] << " input.txt output.dot" << std::endl;
         return 1;
     }
 
@@ -31,7 +31,7 @@ int main(int argc, char* argv[]) {
         return 1;
     }
     
-    std::cout << "Граф сохранен " << output_file << std::endl;
+    std::cout << "Граф сохранен в файл " << output_file << std::endl;
     
     return 0;
 }

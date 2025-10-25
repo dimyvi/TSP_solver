@@ -7,7 +7,7 @@
 
 /**
  * @class TSPSolver
- * @brief Solves Traveling Salesman Problem using greedy algorithm
+ * @brief Решает задачу коммивояжера с помощью жадного алгоритма
  */
 class TSPSolver {
 private:
@@ -17,34 +17,34 @@ private:
 
 public:
     /**
-     * @brief Load distance matrix from file
-     * @param filename Input file name
-     * @return true if successful, false otherwise
+     * @brief Загружает матрицу расстояний из файла
+     * @param filename Имя входного файла
+     * @return true если успешно, false в противном случае
      */
     bool LoadMatrixFromFile(const std::string& filename);
     
     /**
-     * @brief Solve TSP using greedy algorithm
+     * @brief Решает задачу коммивояжера жадным алгоритмом
      */
     void SolveGreedyTSP();
     
     /**
-     * @brief Save solution as Graphviz file
-     * @param filename Output file name
-     * @return true if successful, false otherwise
+     * @brief Сохраняет решение в виде файла Graphviz
+     * @param filename Имя выходного файла
+     * @return true если успешно, false в противном случае
      */
     bool SaveGraphToFile(const std::string& filename) const;
     
     /**
-     * @brief Print solution to console
+     * @brief Выводит решение в консоль
      */
     void PrintSolution() const;
 
 private:
     /**
-     * @brief Convert city index to name
-     * @param index City index
-     * @return City name as string
+     * @brief Преобразует индекс города в название
+     * @param index Индекс города
+     * @return Название города в виде строки
      */
     std::string GetCityName(int index) const;
 };
